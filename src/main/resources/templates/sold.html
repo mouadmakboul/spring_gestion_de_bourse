@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thyemleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+<link rel="stylesheet" type="text/css" href="webjars/bootstrap/5.2.0/css/bootstrap.min.css" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    <h1> التدبير المالي لجمعية مدرسة النجاح</h1>
+
+</div>
+
+<body>
+
+<header>
+    <h1>Source Liste</h1>
+</header>
+<main>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Totale des Bourse</th>
+            <th scope="col">Totale des depences</th>
+            <th scope="col">Solde Actuel</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="sumB:${sumBourse}">
+            <th scope="row" th:text="${sumB.sumBourse()}"></th>
+<!--            <th scope="row" th:text="${sumD.sumDepense()}"></th>-->
+
+        </tr>
+
+        </tbody>
+        <!--                <nav aria-label="Page navigation example">-->
+        <!--                    <ul class="pagination">-->
+        <!--                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>-->
+        <!--                        <li class="page-item"><a class="page-link" href="#">1</a></li>-->
+        <!--                        <li class="page-item"><a class="page-link" href="#">2</a></li>-->
+        <!--                        <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+        <!--                        <li class="page-item"><a class="page-link" href="#">Next</a></li>-->
+        <!--                    </ul>-->
+        <!--                </nav>-->
+    </table>
+</main>
+
+</body>
+</html>

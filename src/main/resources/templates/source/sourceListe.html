@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://wwww.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="index.html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="webjars/bootstrap/5.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .header {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+            color: #333;
+        }
+
+        .header h1 {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .card {
+            font-size: 20px;
+            margin: 20px;
+            max-width: 100%;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            background-color: #f8f9fa;
+            font-weight: bold;
+            padding: 10px;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .btn-delete {
+            background-color: #dc3545;
+            color: #fff;
+        }
+
+        .btn-edit {
+            background-color: #28a745;
+            color: #fff;
+        }
+
+        .pagination {
+            justify-content: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div layout:fragment="content">
+<div class="header">
+    <h1>التدبير المالي لجمعية دعم مدرسة النجاح</h1>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        Depence Liste
+        <div style="float: right">
+            <button class="btn btn-primary"><a href="createSource" style="color: #fff; text-decoration: none;">Ajouter Source</a></button>
+        </div>
+    </div>
+    <div class="card-body" style="width: 100%;height: 500px; overflow: scroll">
+        <table class="table">
+            <thead>
+           <tr>
+                <th scope="col">Référance de Source</th>
+                <th scope="col">Objet du Source</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody >
+            <tr th:each="source:${sourceJsp}">
+                <th scope="row" th:text="${source.id}"></th>
+                <th scope="row" th:text="${source.objSource}"></th>
+                <td>
+                    <a class="btn btn-delete" onclick="return confirm('Are you sure you want to delete this item?')"
+                       th:href="@{deleteSource(id=${source.id},page=${currentPage}, size=${size})}">
+                        <i class="bi bi-trash-fill"></i>
+                    </a>
+                    <a class="btn btn-edit" th:href="@{showSource(id=${source.id})}">
+                        <i class="bi bi-pencil-fill"></i>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer">
+        <!--        <nav aria-label="Page navigation example" >-->
+        <!--            <ul class="pagination" >-->
+        <!--                <li class="page-item" th:each="page,status:${pages}" >-->
+        <!--                    <a  th:href="@{allBourse(page=${previous}-1, size=${size})}"/>-->
+        <!--                    <a th:class="${status.index==currentPage?'btn btn-primary':'btn'}"-->
+        <!--                    th:href="@{allBourse(page=${status.index}, size=${size})}"-->
+        <!--                    ></a>-->
+        <!--                <a th:href="@{allBourse(page=${status.index}+1, size=${size})}">Next</a></li>-->
+        <!--            </ul>-->
+        <!--        </nav>-->
+        <ul class="pagination">
+
+            <li th:each="page,status:${pages}">
+                <a th:class="${status.index==currentPage?'btn btn-primary':'btn'}"
+                   th:href="@{allSource(page=${status.index}, size=${size})}"
+                   th:text="${status.index}+1"></a>
+            </li>
+        </ul>
+    </div>
+</div>
+</div>
+</body>
+</html>
+

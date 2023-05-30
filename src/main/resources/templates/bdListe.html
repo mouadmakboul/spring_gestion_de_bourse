@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://wwww.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="index.html">
+<link rel="stylesheet" type="text/css" href="webjars/bootstrap/5.2.0/css/bootstrap.min.css" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    <h1> التدبير المالي لجمعية مدرسة النجاح</h1>
+
+</div>
+
+<body>
+<div layout:fragment="content">
+
+
+    <h1>Depence Liste</h1>
+
+<main>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Numero de Dépence</th>
+            <th scope="col">Objet du Dépence</th>
+            <th scope="col">Date du Dépence</th>
+            <th scope="col">Montant du Dépence</th>
+            <th scope="col">Bénificiare</th>
+            <th scope="col">Type de Dépence</th>
+            <th scope="col">Source de Dépence</th>
+            <th>Action</th>
+            <th>Solde</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="depence:${depence}">
+            <th scope="row" th:text="${depence.id}"></th>
+            <th scope="row" th:text="${depence.refDepence}"></th>
+            <th scope="row" th:text="${depence.dateDepence}"></th>
+            <th scope="row" th:text="${depence.montantDepence}"></th>
+            <th scope="row" th:text="${depence.bourse.id}"></th>
+            <th scope="row" th:text="${depence.bourse.refBourse}"></th>
+            <th scope="row" th:text="${depence.bourse.dateBourse}"></th>
+            <th scope="row" th:text="${depence.bourse.montantBourse}"></th>
+            <th scope="row" th:text="${depence.bourse.montantBourse-depence.montantDepence}"></th>
+            <th>
+
+            <td>
+                <a class="btn btn-danger"  onclick="return confirm('are you shure to delete this item ?')" th:href="@{deleteDepence(id=${depence.id})}">Delete</a>
+            </td>
+            <td>
+                <a class="btn btn-success" th:href="@{showDepence(id=${depence.id})}">Edite</a>
+            </td>
+
+            </th>
+        </tr>
+
+        </tbody>
+        <!--                <nav aria-label="Page navigation example">-->
+        <!--                    <ul class="pagination">-->
+        <!--                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>-->
+        <!--                        <li class="page-item"><a class="page-link" href="#">1</a></li>-->
+        <!--                        <li class="page-item"><a class="page-link" href="#">2</a></li>-->
+        <!--                        <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+        <!--                        <li class="page-item"><a class="page-link" href="#">Next</a></li>-->
+        <!--                    </ul>-->
+        <!--                </nav>-->
+    </table>
+</main>
+</div>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://wwww.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="index.html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="webjars/bootstrap/5.2.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        .form-control {
+            margin-bottom: 10px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .btn-primary.btn-block {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div layout:fragment="content">
+    <h1 class="header">Création d'une dépense</h1>
+<!--    <div class="row mb-4">-->
+<!--        <div class="col">-->
+<!--            <div class="form-outline">-->
+<!--                <label class="form-label" for="solde">Votre solde</label>-->
+<!--                <input type="text" id="solde" class="form-control" name="solde" th:value="${solde.solde}"/>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<form method="post" th:action="@{saveDepence}">
+    <div class="row mb-4">
+        <div class="col">
+            <div class="form-outline">
+                <label class="form-label" for="refDepence">Référence de Dépense</label>
+                <input type="text" id="refDepence" class="form-control" name="refDepence" placeholder="Donner la référence de la dépense"/>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-outline">
+                <label class="form-label" for="dateDepence">Date de réception</label>
+                <input type="datetime-local" id="dateDepence" name="dateDepence" class="form-control" />
+            </div>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col">
+            <div class="form-outline">
+                <label class="form-label" for="montantDepence">Montant de Dépense</label>
+                <input type="number" id="montantDepence" class="form-control" name="montantDepence"/>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-outline">
+                <label class="form-label" for="benificiaire">Bénéficiaire</label>
+                <input type="text" id="benificiaire" class="form-control" name="benificiaire" placeholder="Bénéficiaire"/>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col">
+            <div class="form-outline">
+                <label class="form-label" for="typeDepenceId">Type de Dépense</label>
+                <select id="typeDepenceId" name="typeDepenceId" class="form-control">
+                    <option th:each="listType:${listTypeDepence}" th:value="${listType.id}" th:text="${listType.objDepence}"></option>
+                </select>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-outline">
+                <label class="form-label" for="bourseId">Source de Bourse</label>
+                <select id="bourseId" name="bourseId" class="form-control">
+                    <option th:each="listeBourse:${listBourse}" th:value="${listeBourse.id}" th:text="${listeBourse.refBourse}"></option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block mb-4" th:align="center">Ajouter la Dépense</button>
+</form>
+</div>
+</body>
+</html>

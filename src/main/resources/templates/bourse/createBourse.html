@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://wwww.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="index.html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="webjars/bootstrap/5.2.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        .form-control {
+            margin-bottom: 10px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .btn-primary.btn-block {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div layout:fragment="content">
+
+    <h1 class="header">Création d'une bourse</h1>
+
+
+<form method="post" th:action="@{saveBourse}">
+    <div class="row mb-4">
+        <div class="col">
+            <div class="form-outline">
+                <label class="form-label" for="refBourse">Référence de Bourse</label>
+                <input type="text" id="refBourse" class="form-control" name="refBourse" placeholder="Donner la référence de la bourse"/>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-outline">
+                <label class="form-label" for="dateBourse">Date de réception</label>
+                <input type="datetime-local" id="dateBourse" name="dateBourse" class="form-control" />
+            </div>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col">
+            <div class="form-outline">
+                <label class="form-label" for="montantBourse">Montant de Bourse</label>
+                <input type="text" id="montantBourse" class="form-control" name="montantBourse"/>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-outline">
+                <label class="form-label" for="sourceId">Source de Bourse</label>
+                <select id="sourceId" name="sourceId" class="form-control">
+                    <option th:each="source : ${listesource}" th:value="${source.id}" th:text="${source.objSource}"></option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block mb-4" th:align="center">Ajouter la bourse</button>
+</form>
+</div>
+</body>
+</html>
